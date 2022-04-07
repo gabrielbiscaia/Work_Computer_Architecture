@@ -1,5 +1,5 @@
 package registradores;
 
-public class Acc {
-
+public class Acc { //Acumulador
+    public int dado;
 }

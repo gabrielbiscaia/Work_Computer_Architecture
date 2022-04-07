@@ -1,5 +1,6 @@
 package registradores;
 
-public class Mbr {
+public class Mbr { //Buffer de instrução
     public String instrucao;
+    public int dado;
 }

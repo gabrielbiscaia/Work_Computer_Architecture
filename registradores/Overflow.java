@@ -1,5 +1,5 @@
 package registradores;
 
-public class Overflow {
+public class Overflow { //Registrador de OverFlow
     
 }

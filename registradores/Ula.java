@@ -1,6 +1,6 @@
 package registradores;
 
-public class Ula {
+public class Ula { //Unidade lógica aritmética
     public int realizaOperac(int eax, int ebx, String opcode) {
         switch (opcode) {
             case "sub":

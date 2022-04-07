@@ -4,15 +4,36 @@ import java.io.File;
 import registradores.*;
 
 public class Cpu {
-    Acc acc = new Acc();
-    Ir ir = new Ir();
-    Mar mar = new Mar();
-    Mbr mbr = new Mbr();
-    Overflow of = new Overflow();
-    Pc pc = new Pc();
-    Uc uc = new Uc();
-    Ula ula = new Ula();
-    ArrayList<String> palavras = new ArrayList<String>();
+    public int numInstrucao = 1;
+    public Acc acc = new Acc();
+    public Ir ir = new Ir();
+    public Mar mar = new Mar();
+    public Mbr mbr = new Mbr();
+    public Overflow of = new Overflow();
+    public Pc pc = new Pc();
+    public Uc uc = new Uc();
+    public Ula ula = new Ula();
+    public ArrayList<String> palavras = new ArrayList<String>();
+
+    public void cicloDeBuscaExecucao(){ //carregar a palavra -> decodificar -> executar
+        // while(FileReader("memoria.txt") =! null){ //enquanto tiver palavra para ler
+        //     pc.enderecoInstrucao = numInstrucao;
+        //     mar.enderecoInstrucao = pc.enderecoInstrucao;
+        //     ler a "numInstrucao" linha da memoria.txt
+        //     mbr.instrucao = Buffer da linha lida
+        //     ir.instrucao = mbr.instrucao;
+        //     aqui termina o ciclo de busca e começa o de decodificação
+        //     numInstrucao++;
+        //     uc.eax = ir.instrucao;
+        //     if(uc.eax == instrucao){
+        //     mar.enderecoInstrucao = operação desejada pelo UC
+        //     mbr.dado = dado apontado pelo mar.enderecoInstrucao
+        //     acc.dado = mbr.dado
+        //     }
+        //     chama o a ULA para fazer a operação
+        //     encerra o ciclo de busca decoficação e instrução
+        // }
+    }
 
     public ArrayList<String> lerPalavra() {
         try {
@@ -32,7 +53,7 @@ public class Cpu {
         int valor = 0;
         char sinal;
         String valorS;
-        String sinalF;
+        String sinalF; //esta em amarelo pois todos "sinalF" estão dentro de "if"
 
         if (operando.charAt(0) == '1') {
             sinal = '-';
@@ -63,6 +84,7 @@ public class Cpu {
         if (operando.charAt(5) == '1') {
             valor = valor + 1;
         }
+
         valorS = Integer.toString(valor);
         return valorS;
 

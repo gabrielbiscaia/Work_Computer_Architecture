@@ -1,5 +1,5 @@
 package registradores;
 
-public class Mar {
+public class Mar { //Endereço de memória
     public int enderecoInstrucao;
 }

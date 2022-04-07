@@ -1,5 +1,5 @@
 package registradores;
 
-public class Ir {
+public class Ir { //Registrador de instrução
     public String instrucao;
 }
