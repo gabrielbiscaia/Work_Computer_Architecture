@@ -16,7 +16,7 @@ public class Cpu {
     public ArrayList<String> palavras = new ArrayList<String>();
 
     public void cicloDeBuscaExecucao(){ //carregar a palavra -> decodificar -> executar
-        // while(FileReader("memoria.txt") =! null){ //enquanto tiver palavra para ler
+        //     lerPalavra();//enquanto tiver palavra para ler
         //     pc.enderecoInstrucao = numInstrucao;
         //     mar.enderecoInstrucao = pc.enderecoInstrucao;
         //     ler a "numInstrucao" linha da memoria.txt
@@ -35,13 +35,12 @@ public class Cpu {
         // }
     }
 
-    public ArrayList<String> lerPalavra() {
+    public ArrayList<String> lerPalavra() { // 4 opcode, 6 primeiro operando, 6 segundo operando
         try {
             Scanner sc = new Scanner(new File("G:\\Meu Drive\\4 semestre\\Arq\\trab01\\memoria.txt"));
             while (sc.hasNextLine()) {
                 palavras.add(sc.nextLine().trim());
             }
-
             sc.close();
         } catch (Exception error) {
             System.out.println("Erro: " + error);
@@ -156,4 +155,3 @@ public class Cpu {
 // res = sinalF.concat(valorS);
 // return res;
 
-}
