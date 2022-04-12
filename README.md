@@ -6,4 +6,4 @@ The logic of our program is:
 2 - Decode the instruction in UC
 3 - Execute the operation in ULA
 4 - Store the result in RAM.
-Made by Gabriel Biscaia and Vitor Greff
+Made by Gabriel Biscaia and Vitor Greff.

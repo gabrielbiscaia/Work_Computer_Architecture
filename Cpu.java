@@ -14,18 +14,22 @@ public class Cpu {
     public Uc uc = new Uc();
     public Ula ula = new Ula();
     public ArrayList<String> palavras = new ArrayList<String>();
+    public int contador = 0;
 
     public void cicloDeBuscaExecucao(){ //carregar a palavra -> decodificar -> executar
-        //     lerPalavra();//enquanto tiver palavra para ler
-        //     pc.enderecoInstrucao = numInstrucao;
-        //     mar.enderecoInstrucao = pc.enderecoInstrucao;
-        //     ler a "numInstrucao" linha da memoria.txt
-        //     mbr.instrucao = Buffer da linha lida
-        //     ir.instrucao = mbr.instrucao;
-        //     aqui termina o ciclo de busca e começa o de decodificação
-        //     numInstrucao++;
-        //     uc.eax = ir.instrucao;
-        //     if(uc.eax == instrucao){
+        //busca
+            lerPalavra();//enquanto tiver palavra para ler
+            pc.enderecoInstrucao = numInstrucao;
+            mar.enderecoInstrucao = pc.enderecoInstrucao;
+            mbr.instrucao = palavras.get(contador);
+            contador++;
+            ir.instrucao = mbr.instrucao;
+        //fim busca começo decodificação
+            numInstrucao++;
+        //     chamar função para separar os operandos
+        //     uc.eax = operando1;
+        //     uc.ebx = operando2;
+        //     if(opcode != null){
         //     mar.enderecoInstrucao = operação desejada pelo UC
         //     mbr.dado = dado apontado pelo mar.enderecoInstrucao
         //     acc.dado = mbr.dado
