@@ -14,11 +14,12 @@ public class Cpu {
     public Uc uc = new Uc();
     public Ula ula = new Ula();
     public ArrayList<String> palavras = new ArrayList<String>();
+    
     public int contador = 0;
 
     public void cicloDeBuscaExecucao(){ //carregar a palavra -> decodificar -> executar
         //busca
-            lerPalavra();//enquanto tiver palavra para ler
+            lerMemoria();//enquanto tiver palavra para ler
             pc.enderecoInstrucao = numInstrucao;
             mar.enderecoInstrucao = pc.enderecoInstrucao;
             mbr.instrucao = palavras.get(contador);
@@ -39,7 +40,7 @@ public class Cpu {
         // }
     }
 
-    public ArrayList<String> lerPalavra() { // 4 opcode, 6 primeiro operando, 6 segundo operando
+    public ArrayList<String> lerMemoria() { // 4 opcode, 6 primeiro operando, 6 segundo operando
         try {
             Scanner sc = new Scanner(new File("C:\\Faculdade\\AOC\\Trab1AOC\\memoria.txt"));
             while (sc.hasNextLine()) {
@@ -51,6 +52,7 @@ public class Cpu {
         }
         return palavras;
     }
+
 
     public int convertOperando(String operando) {
         int oper=0;
