@@ -14,6 +14,7 @@ public class Cpu {
     public Uc uc = new Uc();
     public Ula ula = new Ula();
     public ArrayList<String> palavras = new ArrayList<String>();
+    
     public int contador = 0;
 
     public void cicloDeBuscaExecucao(){ //carregar a palavra -> decodificar -> executar
@@ -51,6 +52,7 @@ public class Cpu {
         }
         return palavras;
     }
+
 
     public int convertOperando(String operando) {
         int oper=0;
