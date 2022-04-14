@@ -41,7 +41,7 @@ public class Cpu {
 
     public ArrayList<String> lerPalavra() { // 4 opcode, 6 primeiro operando, 6 segundo operando
         try {
-            Scanner sc = new Scanner(new File("G:\\Meu Drive\\4 semestre\\Arq\\trab01\\memoria.txt"));
+            Scanner sc = new Scanner(new File("C:\\Faculdade\\AOC\\Trab1AOC\\memoria.txt"));
             while (sc.hasNextLine()) {
                 palavras.add(sc.nextLine().trim());
             }
