@@ -19,7 +19,7 @@ public class Cpu {
 
     public void cicloDeBuscaExecucao(){ //carregar a palavra -> decodificar -> executar
         //busca
-            lerPalavra();//enquanto tiver palavra para ler
+            lerMemoria();//enquanto tiver palavra para ler
             pc.enderecoInstrucao = numInstrucao;
             mar.enderecoInstrucao = pc.enderecoInstrucao;
             mbr.instrucao = palavras.get(contador);
@@ -40,9 +40,9 @@ public class Cpu {
         // }
     }
 
-    public ArrayList<String> lerPalavra() { // 4 opcode, 6 primeiro operando, 6 segundo operando
+    public ArrayList<String> lerMemoria() { // 4 opcode, 6 primeiro operando, 6 segundo operando
         try {
-            Scanner sc = new Scanner(new File("G:\\Meu Drive\\4 semestre\\Arq\\trab01\\memoria.txt"));
+            Scanner sc = new Scanner(new File("G:\\Meu Drive\\4 Semestre\\Arq\\trab01\\Work1AOC"));
             while (sc.hasNextLine()) {
                 palavras.add(sc.nextLine().trim());
             }
