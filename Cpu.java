@@ -42,7 +42,7 @@ public class Cpu {
 
     public ArrayList<String> lerMemoria() { // 4 opcode, 6 primeiro operando, 6 segundo operando
         try {
-            Scanner sc = new Scanner(new File("G:\\Meu Drive\\4 Semestre\\Arq\\trab01\\Work1AOC"));
+            Scanner sc = new Scanner(new File("C:\\Users\\User\\Desktop\\Work1AOC\\memoria.txt"));
             while (sc.hasNextLine()) {
                 palavras.add(sc.nextLine().trim());
             }
@@ -51,14 +51,6 @@ public class Cpu {
             System.out.println("Erro: " + error);
         }
         return palavras;
-    }
-
-
-    public int convertOperando(String operando) {
-        int oper=0;
-
-        oper = Integer.parseInt(operando, 2);
-        return oper;
     }
 
     public int converteOperandoComplemento2(String operando) {
@@ -88,13 +80,6 @@ public class Cpu {
         return res;
     }
 
-    public int convertOpcode(String opcode) {
-        int opc = 0;
-
-        opc = Integer.parseInt(opcode, 2);
-        return opc;
-
-    }
 }
 
 // for (int i = 0; i < palavra.size(); i++) {
