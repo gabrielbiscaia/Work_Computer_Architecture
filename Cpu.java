@@ -16,18 +16,17 @@ public class Cpu {
     public ArrayList<String> palavras = new ArrayList<String>();
     
     public void cicloDeBuscaExecucao(){ //buscar -> decodificar -> executar
-        //busca
+        //começo busca
         lerMemoria();
         for(this.numInstrucao = 0; this.numInstrucao < palavras.size(); this.numInstrucao++){ //enquanto tiver palavra para ler na memória
             pc.enderecoInstrucao = this.numInstrucao;
             mar.enderecoInstrucao = pc.enderecoInstrucao;
             mbr.instrucao = palavras.get(this.numInstrucao);
             ir.instrucao = mbr.instrucao;
+            //fim busca começo decodificação
+            uc.decode(palavras, pc.enderecoInstrucao);//função para separar os operandos
+            ula.realizaOperac(uc.op1, uc.op2, uc.opcode);
         }
-        //fim busca começo decodificação
-        //     chamar função para separar os operandos
-        //     uc.eax = operando1;
-        //     uc.ebx = operando2;
         //     if(opcode != null){
         //     mar.enderecoInstrucao = operação desejada pelo UC
         //     mbr.dado = dado apontado pelo mar.enderecoInstrucao
