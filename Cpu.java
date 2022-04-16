@@ -4,7 +4,7 @@ import java.io.File;
 import registradores.*;
 
 public class Cpu {
-    public int numInstrucao = 1;
+    public int numInstrucao;
     public Acc acc = new Acc();
     public Ir ir = new Ir();
     public Mar mar = new Mar();
@@ -15,18 +15,16 @@ public class Cpu {
     public Ula ula = new Ula();
     public ArrayList<String> palavras = new ArrayList<String>();
     
-    public int contador = 0;
-
-    public void cicloDeBuscaExecucao(){ //carregar a palavra -> decodificar -> executar
+    public void cicloDeBuscaExecucao(){ //buscar -> decodificar -> executar
         //busca
-            lerMemoria();//enquanto tiver palavra para ler
-            pc.enderecoInstrucao = numInstrucao;
+        lerMemoria();
+        for(this.numInstrucao = 0; this.numInstrucao < palavras.size(); this.numInstrucao++){ //enquanto tiver palavra para ler na memória
+            pc.enderecoInstrucao = this.numInstrucao;
             mar.enderecoInstrucao = pc.enderecoInstrucao;
-            mbr.instrucao = palavras.get(contador);
-            contador++;
+            mbr.instrucao = palavras.get(this.numInstrucao);
             ir.instrucao = mbr.instrucao;
+        }
         //fim busca começo decodificação
-            numInstrucao++;
         //     chamar função para separar os operandos
         //     uc.eax = operando1;
         //     uc.ebx = operando2;
@@ -42,7 +40,7 @@ public class Cpu {
 
     public ArrayList<String> lerMemoria() { // 4 opcode, 6 primeiro operando, 6 segundo operando
         try {
-            Scanner sc = new Scanner(new File("C:\\Users\\User\\Desktop\\Work1AOC\\memoria.txt"));
+            Scanner sc = new Scanner(new File("C:\\Faculdade\\AOC\\Trab1AOC\\memoria.txt"));
             while (sc.hasNextLine()) {
                 palavras.add(sc.nextLine().trim());
             }
