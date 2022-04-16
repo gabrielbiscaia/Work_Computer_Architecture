@@ -42,7 +42,7 @@ public class Cpu {
 
     public ArrayList<String> lerMemoria() { // 4 opcode, 6 primeiro operando, 6 segundo operando
         try {
-            Scanner sc = new Scanner(new File("C:\\Faculdade\\AOC\\Trab1AOC\\memoria.txt"));
+            Scanner sc = new Scanner(new File("G:\\Meu Drive\\4 Semestre\\Arq\\trab01\\Work1AOC"));
             while (sc.hasNextLine()) {
                 palavras.add(sc.nextLine().trim());
             }
