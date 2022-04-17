@@ -18,7 +18,6 @@ public class Cpu {
     
     public void cicloDeBuscaExecucao(){ //buscar -> decodificar -> executar
         lerMemoria1();
-        criarMemoria2();
         for(this.numInstrucao = 0; this.numInstrucao < palavras.size(); this.numInstrucao++){//enquanto tiver palavra para ler na memória
             //começo busca
             pc.enderecoInstrucao = this.numInstrucao;
@@ -35,7 +34,7 @@ public class Cpu {
         }
     }
 
-    public ArrayList<String> lerMemoria1() {//4 opcode, 6 primeiro operando, 6 segundo operando
+    public ArrayList<String> lerMemoria1() {
         try {
             Scanner sc = new Scanner(new File("C:\\Faculdade\\AOC\\Trab1AOC\\memoria1.txt"));
             while (sc.hasNextLine()) {
@@ -46,19 +45,6 @@ public class Cpu {
             System.out.println("Erro: " + error);
         }
         return palavras;
-    }
-
-    public void criarMemoria2(){
-        try{
-            File memoria = new File("memoria2.txt");
-            if(memoria.createNewFile()){
-                System.out.println("Arquivo criado: memoria2.txt");
-            }else{
-                System.out.println("O arquivo ja existe");
-            }
-        }catch(Exception error){
-            System.out.println("Erro: "+error);
-        }
     }
 
     public void escreveMemoria2(String dado){
