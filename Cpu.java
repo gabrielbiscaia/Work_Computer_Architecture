@@ -17,27 +17,22 @@ public class Cpu {
     public ArrayList<String> palavras = new ArrayList<String>();
     
     public void cicloDeBuscaExecucao(){ //buscar -> decodificar -> executar
-        //começo busca
         lerMemoria1();
         criarMemoria2();
-        for(this.numInstrucao = 0; this.numInstrucao < palavras.size(); this.numInstrucao++){ //enquanto tiver palavra para ler na memória
+        for(this.numInstrucao = 0; this.numInstrucao < palavras.size(); this.numInstrucao++){//enquanto tiver palavra para ler na memória
+            //começo busca
             pc.enderecoInstrucao = this.numInstrucao;
             mar.enderecoInstrucao = pc.enderecoInstrucao;
             mbr.instrucao = palavras.get(this.numInstrucao);
             ir.instrucao = mbr.instrucao;
             //fim busca começo decodificação
-            uc.decode(palavras, pc.enderecoInstrucao);//função para separar os operandos
+            uc.decode(palavras, pc.enderecoInstrucao);
+            //fim decodificação começo execução
             acc.dado = ula.realizaOperac(uc.op1, uc.op2, uc.opcode);
             mbr.dado = acc.dado;
+            escreveMemoria(mbr.dado);
+            //fim execução
         }
-        //     if(opcode != null){
-        //     mar.enderecoInstrucao = operação desejada pelo UC
-        //     mbr.dado = dado apontado pelo mar.enderecoInstrucao
-        //     acc.dado = mbr.dado
-        //     }
-        //     chama o a ULA para fazer a operação
-        //     encerra o ciclo de busca decoficação e instrução
-        // }
     }
 
     public ArrayList<String> lerMemoria1() { // 4 opcode, 6 primeiro operando, 6 segundo operando
