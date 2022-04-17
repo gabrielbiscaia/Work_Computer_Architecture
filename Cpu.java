@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileWriter;
 import java.io.File;
 import registradores.*;
 
@@ -17,7 +18,8 @@ public class Cpu {
     
     public void cicloDeBuscaExecucao(){ //buscar -> decodificar -> executar
         //começo busca
-        lerMemoria();
+        lerMemoria1();
+        criarMemoria2();
         for(this.numInstrucao = 0; this.numInstrucao < palavras.size(); this.numInstrucao++){ //enquanto tiver palavra para ler na memória
             pc.enderecoInstrucao = this.numInstrucao;
             mar.enderecoInstrucao = pc.enderecoInstrucao;
@@ -25,7 +27,8 @@ public class Cpu {
             ir.instrucao = mbr.instrucao;
             //fim busca começo decodificação
             uc.decode(palavras, pc.enderecoInstrucao);//função para separar os operandos
-            ula.realizaOperac(uc.op1, uc.op2, uc.opcode);
+            acc.dado = ula.realizaOperac(uc.op1, uc.op2, uc.opcode);
+            mbr.dado = acc.dado;
         }
         //     if(opcode != null){
         //     mar.enderecoInstrucao = operação desejada pelo UC
@@ -37,9 +40,9 @@ public class Cpu {
         // }
     }
 
-    public ArrayList<String> lerMemoria() { // 4 opcode, 6 primeiro operando, 6 segundo operando
+    public ArrayList<String> lerMemoria1() { // 4 opcode, 6 primeiro operando, 6 segundo operando
         try {
-            Scanner sc = new Scanner(new File("C:\\Faculdade\\AOC\\Trab1AOC\\memoria.txt"));
+            Scanner sc = new Scanner(new File("C:\\Faculdade\\AOC\\Trab1AOC\\memoria1.txt"));
             while (sc.hasNextLine()) {
                 palavras.add(sc.nextLine().trim());
             }
@@ -48,6 +51,30 @@ public class Cpu {
             System.out.println("Erro: " + error);
         }
         return palavras;
+    }
+
+    public void criarMemoria2(){
+        try{
+            File memoria = new File("memoria2.txt");
+            if(memoria.createNewFile()){
+                System.out.println("Arquivo criado: memoria2.txt");
+            }else{
+                System.out.println("O arquivo ja existe");
+            }
+        }catch(Exception error){
+            System.out.println("Erro: "+error);
+        }
+    }
+
+    public void escreveMemoria(String dado){
+        try{
+            FileWriter escritor  = new FileWriter("memoria2.txt");
+            escritor.write(dado);
+            escritor.close();
+            System.out.println("Dado armazenado na 'memoria2' com sucesso!");
+        }catch (Exception error){
+            System.out.println("Erro: "+error);
+        }
     }
 
     public int converteOperandoComplemento2(String operando) {
