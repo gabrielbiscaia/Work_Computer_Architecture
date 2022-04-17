@@ -30,12 +30,12 @@ public class Cpu {
             //fim decodificação começo execução
             acc.dado = ula.realizaOperac(uc.op1, uc.op2, uc.opcode);
             mbr.dado = acc.dado;
-            escreveMemoria(mbr.dado);
+            escreveMemoria2(mbr.dado);
             //fim execução
         }
     }
 
-    public ArrayList<String> lerMemoria1() { // 4 opcode, 6 primeiro operando, 6 segundo operando
+    public ArrayList<String> lerMemoria1() {//4 opcode, 6 primeiro operando, 6 segundo operando
         try {
             Scanner sc = new Scanner(new File("C:\\Faculdade\\AOC\\Trab1AOC\\memoria1.txt"));
             while (sc.hasNextLine()) {
@@ -61,7 +61,7 @@ public class Cpu {
         }
     }
 
-    public void escreveMemoria(String dado){
+    public void escreveMemoria2(String dado){
         try{
             FileWriter escritor  = new FileWriter("memoria2.txt");
             escritor.write(dado);

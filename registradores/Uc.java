@@ -8,6 +8,7 @@ public class Uc { // Unidade de controle
   public String op2;
 
   public void decode(ArrayList<String> palavras, int numInstrucao) {//função para separar os operandos
+    //4 opcode, 6 primeiro operando, 6 segundo operando
     this.opcode = palavras.get(numInstrucao).substring(0, 4);
     this.op1 = palavras.get(numInstrucao).substring(4, 10);
     this.op2 = palavras.get(numInstrucao).substring(10, 16);
