@@ -3,7 +3,6 @@ package registradores;
 import java.util.ArrayList;
 
 public class Uc { // Unidade de controle
-  public String instrucao;
   public String opcode;
   public String op1;
   public String op2;
