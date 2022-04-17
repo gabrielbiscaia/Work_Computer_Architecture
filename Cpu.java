@@ -50,7 +50,7 @@ public class Cpu {
     public void escreveMemoria2(String dado){
         try{
             FileWriter escritor  = new FileWriter("memoria2.txt");
-            escritor.write(dado);
+            escritor.append(dado);
             escritor.close();
             System.out.println("Dado armazenado na 'memoria2' com sucesso!");
         }catch (Exception error){
