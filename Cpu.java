@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import registradores.*;
 
 public class Cpu {
@@ -49,8 +50,8 @@ public class Cpu {
 
     public void escreveMemoria2(String dado){
         try{
-            FileWriter escritor  = new FileWriter("memoria2.txt");
-            escritor.append(dado);
+            PrintWriter escritor  = new PrintWriter(new FileWriter("memoria2.txt", true));
+            escritor.append(dado +"\n");
             escritor.close();
             System.out.println("Dado armazenado na 'memoria2' com sucesso!");
         }catch (Exception error){
