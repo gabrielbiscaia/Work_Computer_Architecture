@@ -12,8 +12,8 @@ public class Ula { // Unidade lógica aritmética
                 System.out.println("\nRealizando uma Soma:");
                 eax = converteOperandoComplemento2(eax);
                 ebx = converteOperandoComplemento2(ebx);
-                System.out.println(eax + " (" + Integer.parseInt(eax, 2) + ")" + " +");
-                System.out.println(ebx + " (" + Integer.parseInt(ebx, 2) + ")");
+                System.out.println(eax);
+                System.out.println(ebx);
                 System.out.println("----------");
                 this.res = somaBinaria(eax, ebx, false);
                 return this.res;
@@ -22,8 +22,8 @@ public class Ula { // Unidade lógica aritmética
                 System.out.println("\nRealizando uma subtração:");
                 eax = converteOperandoComplemento2(eax);
                 ebx = converteOperandoComplemento2(ebx);
-                System.out.println(eax + " (" + Integer.parseInt(eax, 2) + ")" + " -");
-                System.out.println(ebx + " (" + Integer.parseInt(ebx, 2) + ")");
+                System.out.println(eax);
+                System.out.println(ebx);
                 System.out.println("----------");
                 this.res = subBinaria(eax, ebx);
                 return this.res;
