@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -17,7 +18,7 @@ public class Cpu {
     public Ula ula = new Ula();
     public ArrayList<String> palavras = new ArrayList<String>();
     
-    public void cicloDeBuscaExecucao(){ //buscar -> decodificar -> executar
+    public void cicloDeBuscaExecucao() throws InterruptedException{ //buscar -> decodificar -> executar
         lerMemoria1();
         for(this.numInstrucao = 0; this.numInstrucao < palavras.size(); this.numInstrucao++){//enquanto tiver palavra para ler na memória
             //começo busca
@@ -29,6 +30,8 @@ public class Cpu {
             uc.decode(palavras, pc.enderecoInstrucao);
             //fim decodificação começo execução
             acc.dado = ula.realizaOperac(uc.op1, uc.op2, uc.opcode);
+            System.out.println(acc.dado);
+            TimeUnit.MILLISECONDS.sleep(1250);
             mbr.dado = acc.dado;
             escreveMemoria2(mbr.dado);
             //fim execução
