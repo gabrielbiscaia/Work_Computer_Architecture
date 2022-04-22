@@ -10,8 +10,8 @@ public class Ula { // Unidade lógica aritmética
         switch (opcode) {
             case "0001":
                 System.out.println("\nRealizando uma Soma:");
-                // eax = converteOperandoComplemento2(eax);
-                // ebx = converteOperandoComplemento2(ebx);
+                eax = converteOperandoComplemento2(eax);
+                ebx = converteOperandoComplemento2(ebx);
                 System.out.println(eax + " (" + Integer.parseInt(eax, 2) + ")" + " +");
                 System.out.println(ebx + " (" + Integer.parseInt(ebx, 2) + ")");
                 System.out.println("----------");
@@ -20,8 +20,8 @@ public class Ula { // Unidade lógica aritmética
 
             case "0010":
                 System.out.println("\nRealizando uma subtração:");
-                // eax = converteOperandoComplemento2(eax);
-                // ebx = converteOperandoComplemento2(ebx);
+                eax = converteOperandoComplemento2(eax);
+                ebx = converteOperandoComplemento2(ebx);
                 System.out.println(eax + " (" + Integer.parseInt(eax, 2) + ")" + " -");
                 System.out.println(ebx + " (" + Integer.parseInt(ebx, 2) + ")");
                 System.out.println("----------");
