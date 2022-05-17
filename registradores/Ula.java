@@ -2,46 +2,52 @@ package registradores;
 
 public class Ula { // Unidade lógica aritmética
     public String res = new String();
+    public String[] resultados = new String[50];
     public Overflow ov = new Overflow();
     public boolean vai_um = false;
 
-    public String realizaOperac(String eax, String ebx, String opcode) {
+    public String realizaOperac(String eax, String ebx, String opcode, int clock) {
         this.vai_um = false;
+        resultados[clock] = new String();
         switch (opcode) {
             case "0001":
-                System.out.println("\nRealizando uma Soma:");
+                System.out.println("Realizando uma Soma:");
                 eax = converteOperandoComplemento2(eax);
                 ebx = converteOperandoComplemento2(ebx);
                 System.out.println(eax);
                 System.out.println(ebx);
                 System.out.println("----------");
                 this.res = somaBinaria(eax, ebx, false);
+                resultados[clock] = this.res;
                 return this.res;
 
             case "0010":
-                System.out.println("\nRealizando uma subtração:");
+                System.out.println("Realizando uma subtração:");
                 eax = converteOperandoComplemento2(eax);
                 ebx = converteOperandoComplemento2(ebx);
                 System.out.println(eax);
                 System.out.println(ebx);
                 System.out.println("----------");
                 this.res = subBinaria(eax, ebx);
+                resultados[clock] = this.res;
                 return this.res;
 
             case "0011":
-                System.out.println("\nRealizando uma multiplicação:");
+                System.out.println("Realizando uma multiplicação:");
                 System.out.println(eax + " (" + Integer.parseInt(eax, 2) + ")" + " X");
                 System.out.println(ebx + " (" + Integer.parseInt(ebx, 2) + ")");
                 System.out.println("----------");
                 this.res = multBinaria(eax, ebx);
+                resultados[clock] = this.res;
                 return this.res;
 
             case "0100":
-                System.out.println("\nRealizando uma divisão:");
+                System.out.println("Realizando uma divisão:");
                 System.out.println(eax + " (" + Integer.parseInt(eax, 2) + ")" + " /");
                 System.out.println(ebx + " (" + Integer.parseInt(ebx, 2) + ")");
                 System.out.println("----------");
                 this.res = divisaoBinaria(eax, ebx);
+                resultados[clock] = this.res;
                 return this.res;
 
             default:

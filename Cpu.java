@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import registradores.*;
 
 public class Cpu {
-    public int numInstrucao;
+    public int clock;
     public Acc acc = new Acc();
     public Ir ir = new Ir();
     public Mar mar = new Mar();
@@ -20,27 +20,80 @@ public class Cpu {
     
     public void cicloDeBuscaExecucao() throws InterruptedException{ //buscar -> decodificar -> executar
         lerMemoria1();
-        for(this.numInstrucao = 0; this.numInstrucao < palavras.size(); this.numInstrucao++){//enquanto tiver palavra para ler na memória
-            //começo busca
-            pc.enderecoInstrucao = this.numInstrucao;
-            mar.enderecoInstrucao = pc.enderecoInstrucao;
-            mbr.instrucao = palavras.get(this.numInstrucao);
-            ir.instrucao = mbr.instrucao;
-            //fim busca começo decodificação
-            uc.decode(palavras, pc.enderecoInstrucao);
-            //fim decodificação começo execução
-            acc.dado = ula.realizaOperac(uc.op1, uc.op2, uc.opcode);
-            System.out.println(acc.dado);
-            TimeUnit.MILLISECONDS.sleep(1250);
+        pipeline();
+    }
+
+    public String buscarInstrucao(int numInstrucao){
+        pc.enderecoInstrucao = numInstrucao;
+        mar.enderecoInstrucao = pc.enderecoInstrucao;
+        mbr.instrucao = palavras.get(numInstrucao);
+        ir.instrucao = mbr.instrucao;
+
+        return ir.instrucao;
+    }
+
+    public void executarInstrucao(int numInstrucao){
+        if(numInstrucao < palavras.size()){
+            acc.dado = ula.realizaOperac(uc.op1[numInstrucao], uc.op2[numInstrucao], uc.opcode[numInstrucao], numInstrucao);
+            System.out.println(acc.dado); //resultado
             mbr.dado = acc.dado;
-            escreveMemoria2(mbr.dado);
-            //fim execução
+        }
+        
+    }
+
+    public void pipeline() throws InterruptedException{
+        String fi; //Buscar instrução
+        ArrayList<String> di; //Decodar instrução
+        //int co; //Calcular operandos
+        //int fo; //Buscar operação
+        //String ei; //executar instrução // não precisa da variavel
+        String wo; //escrever resultado
+        for(this.clock = 0; this.clock < (palavras.size()+3); this.clock++){ //palavras.size()+3 pois depois que acabar a busca ele ainda roda 3 vezes
+            System.out.println("===== Clock "+this.clock+" =====");
+
+            //busca
+            if(clock < palavras.size()){ //para ele ler apenas o número de palavras, já que o programa após ler o numero de palavras vai rodar mais 3 vezes para terminar todos processos.
+                fi = buscarInstrucao(clock);
+                System.out.println("FI = "+fi);
+            }else{
+                System.out.println("FI = Vazio");
+            }
+
+            //decode
+            if((clock-1) >= 0){ //se a instrução for negativa não executa e retorna "Vazio"
+                di = uc.decode(palavras, (clock -1));
+                if(di.size() == 0){ //esse if é que  ele retorna null
+                    System.out.println("DI = Vazio");
+                }else{ //caso tenha instrução ele retorna ela quebradinha
+                    System.out.println("DI = "+di);
+                }
+            }else{
+                System.out.println("DI = Vazio");
+            }
+            
+            //execução da instrução
+            if(((clock-2) >= 0) && ((clock-2 < palavras.size()))){ //se a instrução for negativa ou caso a instrução seja vazia não executa e retorna "Vazio"
+                System.out.println("EI = ");
+                executarInstrucao(clock-2);
+            }else{
+                System.out.println("EI = Vazio");
+            }
+
+            //escrever resultado na memoria
+            if((clock-3) >= 0){ //se a instrução for negativa não executa e retorna "Vazio"
+                wo = escreveMemoria2(clock-3);
+                System.out.println("WO = "+wo);
+            }else{
+                System.out.println("WO = Vazio");
+            }
+
+            TimeUnit.MILLISECONDS.sleep(3000);
         }
     }
 
     public ArrayList<String> lerMemoria1() {
         try {
-            Scanner sc = new Scanner(new File("C:\\Faculdade\\AOC\\Trab1AOC\\memoria1.txt"));
+            Scanner sc = new Scanner(new File("C:\\Faculdade\\AOC\\Trab2AOC\\memoria1.txt"));
             while (sc.hasNextLine()) {
                 palavras.add(sc.nextLine().trim());
             }
@@ -51,14 +104,15 @@ public class Cpu {
         return palavras;
     }
 
-    public void escreveMemoria2(String dado){
+    public String escreveMemoria2(int numInstrucao){
         try{
             PrintWriter escritor  = new PrintWriter(new FileWriter("memoria2.txt", true));
-            escritor.append(dado +"\n");
+            escritor.append(ula.resultados[numInstrucao] +"\n");
             escritor.close();
-            System.out.println("Dado armazenado na 'memoria2' com sucesso!");
+            return ula.resultados[numInstrucao];
         }catch (Exception error){
             System.out.println("Erro: "+error);
+            return "Erro ao escrever na memoria";
         }
     }
 }
