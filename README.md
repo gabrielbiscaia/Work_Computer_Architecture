@@ -6,5 +6,4 @@ The logic of our pipeline is:
 2 - Decode instruction;
 3 - Execute instruction;
 4 - Write operand.
-Made by Gabriel Biscaia and Vitor Greff.# Work2AOC
-# Work2AOC
+Made by Gabriel Biscaia and Vitor Greff.
