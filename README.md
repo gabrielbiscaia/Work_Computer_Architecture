@@ -1,5 +1,5 @@
-# Work2AOC
-Second work of architecture of computers, this work consists in simulate a pipeline with the Instruction Cycle of computers.
+# Work of Computer Architecture
+Second work of computer architecture, this work consists in simulate a pipeline with the Instruction Cycle of computers.
 This work is entire in Portuguese-BR.
 The logic of our pipeline is:
 1 - Fetch instruction;
