@@ -7,3 +7,4 @@ The logic of our pipeline is:
 3 - Execute instruction;
 4 - Write operand.
 Made by Gabriel Biscaia and Vitor Greff.# Work2AOC
+# Work2AOC
